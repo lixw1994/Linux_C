@@ -1,10 +1,10 @@
 include ../Makefile.inc
 
-GEN_EXE = t_fork fork_file_sharing
+GEN_EXE = ouch intquit t_kill sig_sender
 
-# LINUX_EXE = 
+# LINUX_EXE = signal_functions
 
-EXE = ${GEN_EXE}
+EXE = ${GEN_EXE} 
 
 all : ${EXE}
 
