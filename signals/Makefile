@@ -2,7 +2,7 @@ include ../Makefile.inc
 
 GEN_EXE = ouch intquit t_kill sig_sender
 
-# LINUX_EXE = signal_functions
+# LINUX_EXE = 
 
 EXE = ${GEN_EXE} 
 
