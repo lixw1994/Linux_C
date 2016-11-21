@@ -11,6 +11,10 @@ allgen : ${GEN_EXE}
 clean : 
 	${RM} ${EXE} *.o
 
+clean_mac :
+	${RM} ${EXE} *.o
+	${RM} -r ${EXE} *.dSYM
+
 showall :
 	@ echo ${EXE}
 
