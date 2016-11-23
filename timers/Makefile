@@ -1,7 +1,6 @@
 include ../Makefile.inc
 
-GEN_EXE = ptmr_null_evp ptmr_sigev_signal ptmr_sigev_thread \
-	real_timer t_nanosleep timed_read
+GEN_EXE = real_timer timed_read t_nanosleep
 
 LINUX_EXE = demo_timerfd t_clock_nanosleep
 
@@ -11,7 +10,8 @@ all : ${EXE}
 
 allgen : ${GEN_EXE}
 
-LDLIBS = ${IMPL_LDLIBS} ${LINUX_LIBRT}
+# in Linux , 取消下面一行注释
+# LDLIBS = ${IMPL_LDLIBS} ${LINUX_LIBRT}
 	# Many of the programs in this directory need the 
 	# realtime library, librt; to keep this Makefile simple,
 	# we link *all* of the programs against that library.

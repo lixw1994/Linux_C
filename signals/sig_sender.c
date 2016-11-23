@@ -1,5 +1,5 @@
 #include <signal.h>
-#include "tlpi_hdr.h"
+#include "../lib/tlpi_hdr.h"
 
 int main(int argc, char const *argv[])
 {

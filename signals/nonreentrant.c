@@ -2,9 +2,9 @@
 #include <unistd.h>
 #include <signal.h>
 #include <string.h>
-#include <tlpi_hdr.h>
+#include "../lib/tlpi_hdr.h"
 
-static char* str2;
+static const char* str2;
 static int handled = 0;
 
 static void handler(int sig)
