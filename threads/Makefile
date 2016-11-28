@@ -1,6 +1,6 @@
 include ../Makefile.inc
 
-GENEXE = simple_thread
+GENEXE = simple_thread thread_incr_mutex prod_condvar thread_multijoin
 
 LINUXEXE =
 
@@ -14,7 +14,8 @@ clean :
 	${RM} ${EXE} *.o
 
 clean_mac:
-	${RM} -r ${EXE} *.dYSM
+	${RM} ${EXE} *.o
+	${RM} -r ${EXE} *.dSYM
 
 showall :
 	@echo ${EXE}
