@@ -1,6 +1,7 @@
 include ../Makefile.inc
 
-GENEXE = simple_thread thread_incr_mutex prod_condvar thread_multijoin
+GENEXE = simple_thread thread_incr_mutex prod_condvar thread_multijoin \
+		strerror_test thread_cancel thread_cleanup
 
 LINUXEXE =
 
@@ -21,3 +22,11 @@ showall :
 	@echo ${EXE}
 
 ${EXE} : ${TLPI_LIB}
+
+strerror_test_tsd: strerror_test.o strerror_tsd.o
+	${CC} -o $@ strerror_test.o strerror_tsd.o \
+		${CFLAGS} ${LDLIBS}
+
+strerror_test_tls: strerror_test.o strerror_tls.o
+	${CC} -o $@ strerror_test.o strerror_tls.o \
+	    	${CFLAGS} ${LDLIBS}
