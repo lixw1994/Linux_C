@@ -1,15 +1,3 @@
-/*************************************************************************\
-*                  Copyright (C) Michael Kerrisk, 2016.                   *
-*                                                                         *
-* This program is free software. You may use, modify, and redistribute it *
-* under the terms of the GNU Lesser General Public License as published   *
-* by the Free Software Foundation, either version 3 or (at your option)   *
-* any later version. This program is distributed without any warranty.    *
-* See the files COPYING.lgpl-v3 and COPYING.gpl-v3 for details.           *
-\*************************************************************************/
-
-/* Listing 3-2 */
-
 /* error_functions.h
 
    Header file for error_functions.c.
@@ -19,7 +7,7 @@
 
 /* Error diagnostic routines */
 
-void errMsg(const char *format, ...);
+void errMsg(const char *format, ...);	// 和printf相同，自动追加换行符
 
 #ifdef __GNUC__
 

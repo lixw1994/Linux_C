@@ -1,6 +1,6 @@
 include ../Makefile.inc
 
-GENEXE = svmsg_create svmsg_send
+GENEXE = t_select demo_sigio
 
 LINUXEXE = 
 
@@ -10,7 +10,7 @@ all : ${EXE}
 
 allgen : ${GENEXE}
 
-clean :
+clean : 
 	${RM} ${EXE} *.o
 
 clean_mac :

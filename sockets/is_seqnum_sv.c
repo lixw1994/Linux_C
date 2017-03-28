@@ -1,4 +1,5 @@
 #define _BSD_SOURCE
+
 #include <netdb.h>
 #include "is_seqnum.h"
 
@@ -13,7 +14,7 @@ int main(int argc, char const *argv[])
 	int lfd, cfd, optval, reqLen;
 	socklen_t addrlen;
 	struct addrinfo hints;
-	struct addrinfo* result, * rp;
+	struct addrinfo *result, *rp;
 #define ADDRSTRLEN (NI_MAXHOST + NI_MAXSERV + 10)
 	char addrStr[ADDRSTRLEN];
 	char host[NI_MAXHOST];
@@ -29,15 +30,16 @@ int main(int argc, char const *argv[])
 
 	memset(&hints, 0, sizeof(struct addrinfo));
 	hints.ai_canonname = NULL;
-	hints.ai_addr = NULL;
 	hints.ai_next = NULL;
+	hints.ai_addr = NULL;
 	hints.ai_socktype = SOCK_STREAM;
-	hints.ai_family = AF_UNSPEC;
+	hints.ai_family = AF_UNSPEC;    // IPv4 or IPv6
 	hints.ai_flags = AI_PASSIVE | AI_NUMERICSERV;
 
 	if(getaddrinfo(NULL, PORT_NUM, &hints, &result) != 0)
 		errExit("getaddrinfo");
 
+	// 遍历返回的列表知道创建socket成功
 	optval = 1;
 	for(rp = result; rp != NULL; rp = rp->ai_next)
 	{
@@ -49,19 +51,22 @@ int main(int argc, char const *argv[])
 			errExit("setsockopt");
 
 		if(bind(lfd, rp->ai_addr, rp->ai_addrlen) == 0)
-			break; // 成功
+			break;
 
-		close(lfd);
+		// 本次遍历没有找到可用
+		if(close(lfd) == -1)
+			errExit("close");
 	}
 
 	if(rp == NULL)
-		fatal("Could not bind socket to any address");
+		fatal("Cound not bind socket to any address");
 
 	if(listen(lfd, BACKLOG) == -1)
 		errExit("listen");
 
 	freeaddrinfo(result);
 
+	// 处理客户端连接
 	for(;;)
 	{
 		addrlen = sizeof(struct sockaddr_storage);
@@ -73,12 +78,13 @@ int main(int argc, char const *argv[])
 		}
 
 		if(getnameinfo((struct sockaddr*)&claddr, addrlen, 
-			host, NI_MAXHOST, service, NI_MAXSERV, 0) ==0)
+			host, NI_MAXHOST, service, NI_MAXSERV, 0) == 0)
 			snprintf(addrStr, ADDRSTRLEN, "(%s, %s)", host, service);
 		else
-			snprintf(addrStr, ADDRSTRLEN, "(?Unknown?)");
-		printf("Connection from %s\n", addrStr);
+			snprintf(addrStr, ADDRSTRLEN, "(?UNKNOWN?)");
+		printf("Connectoin from %s\n", addrStr);
 
+		// 读入客户端的请求，发回序列号
 		if(readLine(cfd, reqLenStr, INT_LEN) <= 0)
 		{
 			close(cfd);
@@ -94,29 +100,11 @@ int main(int argc, char const *argv[])
 
 		snprintf(seqNumStr, INT_LEN, "%d\n", seqNum);
 		if(write(cfd, &seqNumStr, strlen(seqNumStr)) != strlen(seqNumStr))
-			fprintf(stderr, "Error on write");
+			fprintf(stderr, "Error on write!");
 		seqNum += reqLen;
 
 		if(close(cfd) == -1)
 			errMsg("close");
 	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

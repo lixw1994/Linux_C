@@ -25,7 +25,7 @@
 #endif
 #include <time.h>
 #include <locale.h>
-#include "tlpi_hdr.h"
+#include "../lib/tlpi_hdr.h"
 
 #define SBUF_SIZE 1000
 

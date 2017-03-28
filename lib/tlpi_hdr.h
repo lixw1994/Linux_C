@@ -1,15 +1,3 @@
-/*************************************************************************\
-*                  Copyright (C) Michael Kerrisk, 2016.                   *
-*                                                                         *
-* This program is free software. You may use, modify, and redistribute it *
-* under the terms of the GNU Lesser General Public License as published   *
-* by the Free Software Foundation, either version 3 or (at your option)   *
-* any later version. This program is distributed without any warranty.    *
-* See the files COPYING.lgpl-v3 and COPYING.gpl-v3 for details.           *
-\*************************************************************************/
-
-/* Listing 3-1 */
-
 /* tlpi_hdr.h
 
    Standard header file used by nearly all of our example programs.
@@ -24,6 +12,8 @@
 #include <unistd.h>     /* Prototypes for many system calls */
 #include <errno.h>      /* Declares errno and defines error constants */
 #include <string.h>     /* Commonly used string-handling functions */
+
+#include "network.h"
 
 #include "get_num.h"    /* Declares our functions for handling numeric
                            arguments (getInt(), getLong()) */

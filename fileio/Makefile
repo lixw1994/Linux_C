@@ -1,7 +1,7 @@
 include ../Makefile.inc
 
 GEN_EXE = copy  t_truncate\
-	seek_io t_readv
+	seek_io t_readv practice
 
 # LINUX_EXE = large_file
 

@@ -1,8 +1,8 @@
 include ../Makefile.inc
 
 GEN_EXE = t_execve envargs closeonexec t_system \
-	#	t_fork fork_file_sharing t_vfork fork_whos_on_first fork_sig_sync \
-	#	fork_stdio_buf multi_wait child_status multi_SIGCHLD
+		t_fork fork_file_sharing t_vfork fork_whos_on_first fork_sig_sync \
+		fork_stdio_buf multi_wait child_status multi_SIGCHLD
 
 LINUX_EXE = exit_handlers
 

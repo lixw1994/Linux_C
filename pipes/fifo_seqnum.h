@@ -9,13 +9,13 @@
 
 #define CLIENT_FIFO_NAME_LEN (sizeof(CLIENT_FIFO_TEMPLATE) + 20)
 
-struct request
+typedef struct 
 {
-	pid_t pid;    // 请求的客户端PID
-	int seqLen;   // 请求的长度
-};
+	pid_t pid;
+	int seqLen;
+}request;
 
-struct response
+typedef struct
 {
 	int seqNum;
-};
+}response;

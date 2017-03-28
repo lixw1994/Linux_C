@@ -1,20 +1,11 @@
-/*************************************************************************\
-*                  Copyright (C) Michael Kerrisk, 2016.                   *
-*                                                                         *
-* This program is free software. You may use, modify, and redistribute it *
-* under the terms of the GNU Lesser General Public License as published   *
-* by the Free Software Foundation, either version 3 or (at your option)   *
-* any later version. This program is distributed without any warranty.    *
-* See the files COPYING.lgpl-v3 and COPYING.gpl-v3 for details.           *
-\*************************************************************************/
-
-/* Listing 3-3 */
-
 /* error_functions.c
 
    Some standard error handling routines used by various programs.
 */
-#include <stdarg.h>
+#ifdef __GNUC__
+  #include <stdarg.h>     // GNUC包含次文件，mac包含stdio.h即可
+#endif
+#include <stddef.h>
 #include "error_functions.h"
 #include "tlpi_hdr.h"
 #include "ename.c.inc"          /* Defines ename and MAX_ENAME */

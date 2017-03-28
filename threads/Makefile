@@ -1,6 +1,6 @@
 include ../Makefile.inc
 
-GENEXE = simple_thread thread_incr_mutex prod_condvar thread_multijoin \
+GENEXE = simple_thread thread_incr_mutex prod_condvar thread_multijoin2 \
 		strerror_test thread_cancel thread_cleanup
 
 LINUXEXE =

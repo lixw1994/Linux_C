@@ -1,6 +1,6 @@
-include ../Makefile.inc
+include ../Makefile.inc.MacOSX
 
-GENEXE = svmsg_create svmsg_send
+GENEXE = daytimetcpcli daytimetcpsrv
 
 LINUXEXE = 
 
